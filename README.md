@@ -1,16 +1,29 @@
-mondriandategenerator
-=====================
+# Mondrian DateTable Generator
 
-A DSP to create a dynamic "in query" date dimension on the fly in your schema. 
+A DynamicSchemaProcessor (DSP) that creates a dynamic "in query" date dimension  as `<inlinetable>` in your schema.
 
-MONDRIAN 4 ONLY!
+## Usage
 
-Add to connection string like so:
+Use a connection string like
 
-jdbc:mondrian:Jdbc=jdbc:mysql://localhost/foodmart;Catalog=mondrian:///datasources/foodmart4.xml;JdbcDrivers=com.mysql.jdbc.Driver;DynamicSchemaProcessor=bi.meteorite.App;StartDate=19970101;EndDate=19981231;Cubes=Sales=the_date,Warehouse=time_id
+<div style="font-family: 'Courier New', monospace;">
+jdbc:mondrian:Jdbc=jdbc:mysql://localhost/foodmart;Catalog=mondrian:///datasources/foodmart4.xml;
+JdbcDrivers=com.mysql.jdbc.Driver;
+<b>DynamicSchemaProcessor=bi.meteorite.App;
+StartDate=19970101;
+EndDate=19981231;
+Cubes=Sales=the_date,Warehouse=time_id</b>
+</div>
 
-StartDate, EndDate and Cubes String Mandatory to define the size of the dimension.
-If you have an incremental id field you'd rather link to (which is much more performant) use InitID parameter to pass a starting integer.
+<p></p>
+
+### Parameters
+
+* **StartDate** (Mandatory)
+* **EndDate** (Mandatory)
+* **Cubes** (Mandatory) String Mandatory to define the size of the dimension.
+* **InitId**: (Optional): If you have an incremental id field you'd rather link to (which is much more performant) use InitID parameter to pass a starting integer.
+
 
 This is supposed to make Proof Of Concepts and Demo's much quicker to get off the ground, it is not supposed to provide the same level of performance that a table in a database can provide and joining 2 date fields is pretty rubbish.
 
